@@ -1,0 +1,22 @@
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/image_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/image_one"/>
+
+    <ImageButton
+        android:id="@+id/next_button"
+        android:layout_width="@dimen/arrow_button_size"
+        android:layout_height="@dimen/arrow_button_size"
+        android:layout_gravity="center"
+        android:src="@drawable/arrow_right"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"/>
+
+</FrameLayout>
