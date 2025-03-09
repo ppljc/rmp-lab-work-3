@@ -2,50 +2,30 @@ package com.example.myapplication3;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.ScrollView;
-import android.widget.TextView;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    private EditText editTextMessage;
-    private LinearLayout messageContainer;
-    private ScrollView scrollView;
+    private ImageView imageView;
+    private ImageButton nextButton;
+    private int currentImageIndex = 0;
+    private int[] images = {R.drawable.image_one, R.drawable.image_two};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_constraint);
+        setContentView(R.layout.activity_main_frame);
 
-        editTextMessage = findViewById(R.id.edit_text_message);
-        messageContainer = findViewById(R.id.message_container);
-        scrollView = findViewById(R.id.scroll_view);
-        Button sendButton = findViewById(R.id.send_button);
+        imageView = findViewById(R.id.image_view);
+        nextButton = findViewById(R.id.next_button);
 
-        sendButton.setOnClickListener(new View.OnClickListener() {
+        nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String message = editTextMessage.getText().toString();
-                if (!message.isEmpty()) {
-                    TextView textView = new TextView(MainActivity.this);
-                    textView.setLayoutParams(new LinearLayout.LayoutParams(
-                            LinearLayout.LayoutParams.WRAP_CONTENT,
-                            LinearLayout.LayoutParams.WRAP_CONTENT));
-                    textView.setText(message);
-                    int padding = (int) getResources().getDimension(R.dimen.padding_small);
-                    textView.setPadding(padding, padding, padding, padding);
-                    messageContainer.addView(textView);
-                    editTextMessage.setText("");
-                    scrollView.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            scrollView.fullScroll(View.FOCUS_DOWN);
-                        }
-                    });
-                }
+                currentImageIndex = (currentImageIndex + 1) % images.length;
+                imageView.setImageResource(images[currentImageIndex]);
             }
         });
     }
